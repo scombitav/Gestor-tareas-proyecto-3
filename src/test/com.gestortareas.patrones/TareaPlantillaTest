@@ -1,0 +1,32 @@
+package com.gestortareas.patrones;
+
+import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TareaPlantillaTest {
+
+    @Test
+    void comprobarClonacionDePlantilla() {
+
+        TareaPlantilla original = new TareaPlantilla(
+                "Informe",
+                "Realizar informe",
+                "Alta",
+                Arrays.asList("Universidad")
+        );
+
+        TareaPlantilla copia = original.clonar();
+
+        assertNotSame(original, copia);
+        assertEquals(original.getTitulo(), copia.getTitulo());
+        assertEquals(original.getDescripcion(), copia.getDescripcion());
+        assertEquals(original.getPrioridad(), copia.getPrioridad());
+
+        copia.setTitulo("Informe nuevo");
+
+        assertEquals("Informe", original.getTitulo());
+        assertEquals("Informe nuevo", copia.getTitulo());
+    }
+}
